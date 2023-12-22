@@ -8,6 +8,32 @@ Hint - use Date class exposed in JS
 There is no automated test for this one, this is more for you to understand time goes up as computation goes up
 */
 
+
+
 function calculateTime(n) {
-    return 0.01;
+    let beforeDate = new Date();
+    let beforeTime = beforeDate.getTime();
+
+    sum_of_nums(n)
+
+    let afterDate = new Date();
+    let afterTime = afterDate.getTime();
+
+    let finalTime = afterTime - beforeTime;
+
+    console.log(finalTime);
+    return finalTime;
 }
+
+
+function sum_of_nums(n) {
+    let sum = 0;
+    for ( let i = 1; i <= n; i++ ) {
+        sum += i
+    }
+    return sum;
+}
+// console.log(sum_of_nums(100));
+
+
+console.log(calculateTime(1000000000));

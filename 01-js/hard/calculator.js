@@ -16,6 +16,55 @@
   Once you've implemented the logic, test your code by running
 */
 
-class Calculator {}
+class Calculator {
+  constructor( result ) {
+    this.result = 0;
+  }
+  add(num) {
+    this.result += num;
+  }
+  subtract(num) {
+    this.result -= num;
+  }
+  multiply(num) {
+    this.result *= num;
+  }
+  divide(num) {
+    if ( num === 0) {
+      throw new Error('Division by zero is not allowed');
+    }
+    this.result /= num;
+  }
+  clear() {
+    this.result = 0
+  }
+  getResult() {
+    return this.result
+  }
+  calculate(exp) {
+    // let first remove white spaces
+    const trimmedExp = exp.replace(/\s+/g, ' ').trim();
+    // Now lets filter it for char
+    const validExp = /^[0-9+\-*/().\s]+$/;
+    if ( !validExp.test(trimmedExp)) {
+      throw new Error("Invalid Data")
+    }
+    if (trimmedExp.includes('/ 0')) {
+      throw new Error('Division by zero is not allowed');
+    }
 
+    try {
+      this.result = eval (trimmedExp);
+    } catch(err) {
+        throw new Error("Invalid Expression")
+      }
+  }
+}
+
+const calc = new Calculator();
+calc.add(4)
+calc.divide(4)
+console.log(calc.getResult()); 
+calc.clear()
+console.log(calc.getResult());
 module.exports = Calculator;
